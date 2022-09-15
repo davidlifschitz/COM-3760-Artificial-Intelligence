@@ -45,11 +45,21 @@ run_search(4)
 
 #FOR SIMPLE HEURISTIC
 
-## TOOK TOO LONG TO RUN
+# for n of size: 4:
+    
+# Average length of moves: 15.74
+# Average number of inserts; 22148.3
+# Average number of removes: 10622.04
 
 #FOR SIMPLE HEURISTIC WITH WEIGHTED A* SEARCH
 
-## TOOK TOO LONG TO RUN
+# for n of size: 4:
+    
+# Average length of moves: 16.43
+# Average number of inserts; 15324.27
+# Average number of removes: 7283.89
+
+#Comments: run time is approx 1.5 faster, with around a .75 addition in average steps 
 
 #FOR MANHATTAN HEURISTIC:
 #for n of size: 4:
