@@ -62,16 +62,19 @@ def hdistance1(s): #This will be the simple heuristic of the number of bricks no
     count = 0
     for i in range(len(s)):
         if i != s[i]:
-            counter+=1
-    return counter
+            count+=1
+    # print(count)
+    return count
 
 def hdistance2(s): #This will be the Manhattan distance heuristic
-    n = 
-    # 
-    # 
-    # 
-    # 
-    # 
-    # 
-    # 
-    return 0
+    n = math.sqrt(len(s[0]))
+    count = 0
+    for i in range(len(s[0])):
+        if i != s[0][i]:
+            this_row = i/n
+            ideal_row = s[0][i]/n
+            this_col = i%n
+            ideal_col = s[0][i]%n
+            count += abs(this_row-ideal_row) + abs(this_col-ideal_col)
+    return count
+        

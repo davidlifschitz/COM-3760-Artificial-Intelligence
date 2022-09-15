@@ -11,7 +11,8 @@ import state
 #[list of states, total num of states]
 
 def create(s):
-    return [[s], 0]
+    #including num of pops
+    return [[s], 0, 0]
 
 def is_empty(f):
     return f==[]    # returns true iff f is empty list
@@ -28,19 +29,35 @@ def insert(h,  s):
         f[i]=f[(i-1)//2]
         f[(i-1)//2]=t
         i=(i-1)//2  # i moves upwards
-
+    if h[1] == 3000:
+        print("inserted")
+    if h[1] == 6000:
+        print("inserted")
+    if h[1] == 9000:
+        print("inserted")
 def remove(h):
     if is_empty(h):
         return 0
+    h[2]+=1
     f=h[0]
     s=f[0]
     f[0]=f[len(f)-1]    # the last leaf becomes the root
     del f[-1]       # delete the last leaf
     heapify(f,0)    # fixing the heap
+    if h[2] == 30000:
+        print("removed")
+    if h[2] == 60000:
+        print("removed")
+    if h[2] == 900000:
+        print("removed")
+    if h[2] == 2000000:
+        print("removed")
+    if h[2] == 5000000:
+        print("removed")
     return s
 
 def val(s):  # returns f(x) which is path len + heuristic distance from target
-    return state.hdistance(s)+state.path_len(s)
+    return state.hdistance1(s)+state.path_len(s)
 '''
 for greedy best first search val returns hdistance
 for uniform cost val returns path len
