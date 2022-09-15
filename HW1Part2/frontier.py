@@ -57,7 +57,7 @@ def remove(h):
     return s
 
 def val(s):  # returns f(x) which is path len + heuristic distance from target
-    return state.hdistance1(s)+state.path_len(s)
+    return 2*state.hdistance1(s)+state.path_len(s)
 '''
 for greedy best first search val returns hdistance
 for uniform cost val returns path len

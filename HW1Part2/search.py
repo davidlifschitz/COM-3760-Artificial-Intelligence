@@ -45,7 +45,11 @@ run_search(4)
 
 #FOR SIMPLE HEURISTIC
 
+## TOOK TOO LONG TO RUN
 
+#FOR SIMPLE HEURISTIC WITH WEIGHTED A* SEARCH
+
+## TOOK TOO LONG TO RUN
 
 #FOR MANHATTAN HEURISTIC:
 #for n of size: 4:
@@ -53,4 +57,11 @@ run_search(4)
 # Average number of inserts; 6745.1
 # Average number of removes: 3428.3
 
+#FOR MANHATTAN HEURISTIC WITH WEIGHTED A* SEARCH
+# for n of size: 4:
+  
+# Average length of moves: 18.52
+# Average number of inserts; 3643.69
+# Average number of removes: 1846.4
 
+# Runtime is 2 times quicker for 2*heuristic, and the actual cost of found solution on average went up around 2.5 steps.
