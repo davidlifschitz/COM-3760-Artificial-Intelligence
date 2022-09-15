@@ -60,8 +60,8 @@ def hdistance(s): #This is uniform cost and not based on any heuristic
 def hdistance1(s): #This will be the simple heuristic of the number of bricks not in place
     #check if the index is = to the number
     count = 0
-    for i in range(len(s)):
-        if i != s[i]:
+    for i in range(len(s[0])):
+        if i != s[0][i]:
             count+=1
     # print(count)
     return count
