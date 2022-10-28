@@ -1,0 +1,32 @@
+for n = 8
+♛  .  .  .  .  .  .  . 
+ .  .  .  . ♛  .  .  . 
+ .  .  .  .  .  .  . ♛ 
+ .  .  .  .  . ♛  .  . 
+ .  . ♛  .  .  .  .  . 
+ .  .  .  .  .  . ♛  . 
+ . ♛  .  .  .  .  .  . 
+ .  .  . ♛  .  .  .  . 
+[0, 4, 7, 5, 2, 6, 1, 3]
+######################################DFS BACKTRACK#########################################
+the avg num of iters for DFS Backtracking are 982.0
+the avg num of moves for DFS Backtracking are 982.0
+the max num of iters for DFS Backtracking are 982
+the max num of moves for DFS Backtracking are 982
+the min num of iters for DFS Backtracking are 982
+the min num of moves for DFS Backtracking are 982
+######################################British Museum Algorithm#########################################
+the avg num of iters for British Museum Algorithm are 174948
+the avg num of moves for British Museum Algorithm are 1399577
+the max num of iters for British Museum Algorithm are 358069
+the max num of moves for British Museum Algorithm are 2864552
+the min num of iters for British Museum Algorithm are 17855
+the min num of moves for British Museum Algorithm are 142840
+######################################Heuristic Repair/Stochastic Search/Hill Climbing#########################################
+the avg num of iters for Hill Climbing Algorithm are 12
+the avg num of moves for Hill Climbing Algorithm are 5
+the max num of iters for Hill Climbing Algorithm are 13
+the max num of moves for Hill Climbing Algorithm are 6
+the min num of iters for Hill Climbing Algorithm are 10
+the min num of moves for Hill Climbing Algorithm are 3
+######################################Forward Checking#########################################
