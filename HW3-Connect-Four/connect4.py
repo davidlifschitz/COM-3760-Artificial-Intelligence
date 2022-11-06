@@ -230,6 +230,8 @@ def three_in_same_row(board,chip):
         if "".join(list(map(str, s_4))) in "".join(list(map(str, np.flip(board, 1).diagonal(offset)))):
             count+=1
     return count
+
+# value inspired by https://github.com/jhaller19/AI/
 def value(board,color):
         opponent_color = -2
         if color == RED_INT:
@@ -246,7 +248,7 @@ def value(board,color):
         # heuristic value is increased by 1 for each 2 pieces in a row by the colors player, decreased by 1 for each 2 pieces in a row by opponent colors player.
         val += two_in_same_row(board,color)
         val -= two_in_same_row(board,opponent_color)
-        # heuristic value is increased by 10 for each 3 pieces in a row by Player 1, -45 for each 3 pieces in a row by Player 2.
+        # heuristic value is increased by 10 for each 3 pieces in a row by the opponent colors player, -45 for each 3 pieces in a row by by the opponent colors player.
         val += three_in_same_row(board,color)*9
         val -= three_in_same_row(board,opponent_color)*45
         return val
@@ -411,70 +413,112 @@ def agent1_find_best_row(board,color):
 # 785.26
 
 
-num_of_red_ab_minmax_wins = 0
-num_of_blue_ab_minmax_wins = 0
-num_of_draws = 0
-num_of_turns = []
-for i in range(0,10):
-    turn = 0
-    game_over = False
-    board = create_board()
-    while not game_over:
-        if turn % 2 == 0:
-            # inp = input("RED please choose a column(1-7): ")
-            # while len(inp) == 0:
-            #     inp = input("Please enter an integer")
-            # print(type(inp))
-            # col = int(inp)
-            # MoveRandom(board,RED_INT)
-            col = agent1_find_best_row(board,RED_INT)
-            row = get_next_open_row(board,col)
-            drop_chip(board,row,col,RED_INT)
-            # while col > 7 or col < 1:
-            #     col = int(input("Invalid column, pick a valid one: "))
-            # while not is_valid_location(board, col - 1):
-            #     col = int(input("Column is full. pick another one..."))
-            # col -= 1
-            # row = get_next_open_row(board, col)
-            # drop_chip(board, row, col, RED_INT)
-        # print_board(board)
-        if turn % 2 == 1 and not game_over:
-            #here is where we implement agent1 ie the ai
-            col = agent1_find_best_row(board,BLUE_INT)
-            row = get_next_open_row(board,col)
-            drop_chip(board,row,col,BLUE_INT)
-            #MoveRandom(board,BLUE_INT)
+# num_of_red_ab_minmax_wins = 0
+# num_of_blue_ab_minmax_wins = 0
+# num_of_draws = 0
+# num_of_turns = []
+# for i in range(0,10):
+#     turn = 0
+#     game_over = False
+#     board = create_board()
+#     while not game_over:
+#         if turn % 2 == 0:
+#             # inp = input("RED please choose a column(1-7): ")
+#             # while len(inp) == 0:
+#             #     inp = input("Please enter an integer")
+#             # print(type(inp))
+#             # col = int(inp)
+#             # MoveRandom(board,RED_INT)
+#             col = agent1_find_best_row(board,RED_INT)
+#             row = get_next_open_row(board,col)
+#             drop_chip(board,row,col,RED_INT)
+#             # while col > 7 or col < 1:
+#             #     col = int(input("Invalid column, pick a valid one: "))
+#             # while not is_valid_location(board, col - 1):
+#             #     col = int(input("Column is full. pick another one..."))
+#             # col -= 1
+#             # row = get_next_open_row(board, col)
+#             # drop_chip(board, row, col, RED_INT)
+#         # print_board(board)
+#         if turn % 2 == 1 and not game_over:
+#             #here is where we implement agent1 ie the ai
+#             col = agent1_find_best_row(board,BLUE_INT)
+#             row = get_next_open_row(board,col)
+#             drop_chip(board,row,col,BLUE_INT)
+#             #MoveRandom(board,BLUE_INT)
 
-        # print_board(board)
+#         # print_board(board)
         
-        if game_is_won(board, RED_INT):
-            game_over = True
-            RED_WINS = True
-            print("Red wins!")
-        if game_is_won(board, BLUE_INT):
-            game_over = True
-            BLUE_WINS = True
-            print("Blue wins!")
-        if len(get_valid_locations(board)) == 0:
-            game_over = True
-            DRAW = True
-            print("Draw!")
-        turn += 1
-    if RED_WINS:
-        num_of_red_ab_minmax_wins += 1
-    if BLUE_WINS:
-        num_of_blue_ab_minmax_wins += 1
-    if DRAW:
-        num_of_draws += 1
-    num_of_turns.append(turn)
-    #tmp = copy.deepcopy(board)
-print("num_of_red_ab_minmax_wins: " + str(num_of_red_ab_minmax_wins))
-print("num_of_blue_ab_minmax_wins: " + str(num_of_blue_ab_minmax_wins))
-print("num_of_draws: " + str(num_of_draws))
-print(np.average(num_of_turns))
+#         if game_is_won(board, RED_INT):
+#             game_over = True
+#             RED_WINS = True
+#             print("Red wins!")
+#         if game_is_won(board, BLUE_INT):
+#             game_over = True
+#             BLUE_WINS = True
+#             print("Blue wins!")
+#         if len(get_valid_locations(board)) == 0:
+#             game_over = True
+#             DRAW = True
+#             print("Draw!")
+#         turn += 1
+#     if RED_WINS:
+#         num_of_red_ab_minmax_wins += 1
+#     if BLUE_WINS:
+#         num_of_blue_ab_minmax_wins += 1
+#     if DRAW:
+#         num_of_draws += 1
+#     num_of_turns.append(turn)
+#     #tmp = copy.deepcopy(board)
+# print("num_of_red_ab_minmax_wins: " + str(num_of_red_ab_minmax_wins))
+# print("num_of_blue_ab_minmax_wins: " + str(num_of_blue_ab_minmax_wins))
+# print("num_of_draws: " + str(num_of_draws))
+# print(np.average(num_of_turns))
 
-#Outputs
-# num_of_red_ab_minmax_wins: 10
-# num_of_blue_ab_minmax_wins: 0
-# num_of_draws: 0
-# 33.0
+# #Outputs
+# # num_of_red_ab_minmax_wins: 10
+# # num_of_blue_ab_minmax_wins: 0
+# # num_of_draws: 0
+# # 33.0
+
+#user vs AI
+game_over = False
+board = create_board()
+print_board(board)
+while not game_over:
+    if turn % 2 == 0:
+        inp = input("RED please choose a column(1-7): ")
+        while len(inp) == 0:
+            inp = input("Please enter an integer")
+        print(type(inp))
+        col = int(inp)
+        # MoveRandom(board,RED_INT)
+        while col > 7 or col < 1:
+            col = int(input("Invalid column, pick a valid one: "))
+        while not is_valid_location(board, col - 1):
+            col = int(input("Column is full. pick another one..."))
+        col -= 1
+        row = get_next_open_row(board, col)
+        drop_chip(board, row, col, RED_INT)
+        print_board(board)
+    if turn % 2 == 1 and not game_over:
+        #here is where we implement agent1 ie the ai
+        col = agent1_find_best_row(board,BLUE_INT)
+        row = get_next_open_row(board,col)
+        drop_chip(board,row,col,BLUE_INT)
+        #MoveRandom(board,BLUE_INT)
+        print_board(board)
+    
+    if game_is_won(board, RED_INT):
+        game_over = True
+        RED_WINS = True
+        print("Red wins!")
+    if game_is_won(board, BLUE_INT):
+        game_over = True
+        BLUE_WINS = True
+        print("Blue wins!")
+    if len(get_valid_locations(board)) == 0:
+        game_over = True
+        DRAW = True
+        print("Draw!")
+    turn += 1
