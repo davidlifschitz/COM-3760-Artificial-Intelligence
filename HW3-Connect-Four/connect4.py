@@ -77,6 +77,22 @@ def get_valid_locations(board):
             valid_locations.append(col)
     return valid_locations
 
+
+def check_for_double_traps(board,chip):
+    s_1 = np.array([chip, chip, EMPTY, EMPTY])
+    s_2 = np.array([chip, EMPTY,EMPTY,chip])
+    s_3 = np.array([EMPTY, EMPTY, chip, chip])
+    s_4 = np.array([EMPTY, chip, EMPTY, chip])
+    s_5 = np.array([chip,EMPTY, chip, EMPTY])
+    s_6 = np.array([EMPTY, chip, chip,EMPTY])
+    
+    arr = [s_1,s_2,s_3,s_4,s_5,s_6]
+    
+    return 0
+    
+    
+    
+
 def two_in_same_row(board, chip):
     #check if the board contains one of the following sequences in the board 
     #that will give it a chance to get four in a row
@@ -171,6 +187,10 @@ def two_in_same_row(board, chip):
     # for offset in range(-2, 4):
         if "".join(list(map(str, s_6))) in "".join(list(map(str, np.flip(board, 1).diagonal(offset)))):
             count+=1
+            
+            
+    count += check_for_double_traps(board,chip)        
+    
     return count
 
 
@@ -338,7 +358,7 @@ def ab_min(board, depth,alpha,beta,color):
     
     
 
-def agent1_find_best_row(board,color):
+def agent1move(board,color):
     #for implementation made the search depth 2, can be changed
     temp_board = ab_max(board=board,depth=2,alpha=float("-inf"),beta=float("inf"),color=BLUE_INT)[1]
     for i in range(ROW_COUNT):
@@ -372,7 +392,7 @@ def agent1_find_best_row(board,color):
 #             # print_board(board)
 #         if turn % 2 == 1 and not game_over:
 #             #here is where we implement agent1 ie the ai
-#             col = agent1_find_best_row(board,BLUE_INT)
+#             col = agent1move(board,BLUE_INT)
 #             row = get_next_open_row(board,col)
 #             drop_chip(board,row,col,BLUE_INT)
 #             #MoveRandom(board,BLUE_INT)
@@ -429,7 +449,7 @@ def agent1_find_best_row(board,color):
 #             # print(type(inp))
 #             # col = int(inp)
 #             # MoveRandom(board,RED_INT)
-#             col = agent1_find_best_row(board,RED_INT)
+#             col = agent1move(board,RED_INT)
 #             row = get_next_open_row(board,col)
 #             drop_chip(board,row,col,RED_INT)
 #             # while col > 7 or col < 1:
@@ -442,7 +462,7 @@ def agent1_find_best_row(board,color):
 #         # print_board(board)
 #         if turn % 2 == 1 and not game_over:
 #             #here is where we implement agent1 ie the ai
-#             col = agent1_find_best_row(board,BLUE_INT)
+#             col = agent1move(board,BLUE_INT)
 #             row = get_next_open_row(board,col)
 #             drop_chip(board,row,col,BLUE_INT)
 #             #MoveRandom(board,BLUE_INT)
@@ -503,7 +523,7 @@ while not game_over:
         print_board(board)
     if turn % 2 == 1 and not game_over:
         #here is where we implement agent1 ie the ai
-        col = agent1_find_best_row(board,BLUE_INT)
+        col = agent1move(board,BLUE_INT)
         row = get_next_open_row(board,col)
         drop_chip(board,row,col,BLUE_INT)
         #MoveRandom(board,BLUE_INT)
