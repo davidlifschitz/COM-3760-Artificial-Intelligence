@@ -367,6 +367,8 @@ def agent1move(board,color):
                 return j
     return -1
 
+#red random vs blue ab minmax
+'''
 # num_of_red_random_wins = 0
 # num_of_blue_ab_minmax_wins = 0
 # num_of_draws = 0
@@ -431,8 +433,10 @@ def agent1move(board,color):
 # num_of_blue_ab_minmax_wins: 100
 # num_of_draws: 0
 # 785.26
+'''
 
-
+#red ab minmax vs blue ab minmax
+'''
 # num_of_red_ab_minmax_wins = 0
 # num_of_blue_ab_minmax_wins = 0
 # num_of_draws = 0
@@ -500,8 +504,9 @@ def agent1move(board,color):
 # # num_of_blue_ab_minmax_wins: 0
 # # num_of_draws: 0
 # # 33.0
+'''
 
-#user vs AI
+#red user vs blue ab minmax
 game_over = False
 board = create_board()
 print_board(board)
