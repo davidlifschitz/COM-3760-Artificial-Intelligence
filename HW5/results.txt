@@ -1,0 +1,67 @@
+From MC vs AB min/max where MC is Blue and AB min/max is Red
+blue_wins_counter is 68
+red_wins_counter is 32
+draw_counter is 1
+
+From MC vs Professor's AI Where MC is Blue and Professor's AI is Red
+Professors AI won 0 times.
+My MC AI won 30 times.
+draw_counter is 0
+
+
+General psuedocode for MC algorithm:
+# Initialize array of wins per column
+    array of 7 zeros  
+# Loop over each column
+    
+    #get the next open row, and if it's full skip it
+        
+    # Simulate 100 games starting from this position in the game
+    # the games are played by two absolutely random chip droppers.
+    #for each round:
+        # Copy the board and make a move in the given column
+        copy(board)
+        drop_chip in next_board at row/col with chip
+        
+        #Play the rest of the game randomly until a winning sequence is found or the board is full
+        #play_a_full_game method is shown underneath this method
+        #if the game is won, then bools_won will be True, otherwise it's going to be False
+        bools_won = play_a_full_game(next_board, chip)
+        # Increment wins per col if agent won
+        if bools_won:
+            wins_per_col[col] += 1
+            
+#using argmax function to find the column that has simulated the most wins
+col_to_return = argmax(wins_per_col)
+#return this column as the best one to drop in.
+return col_to_return
+
+play_a_full_game method:
+
+# Change the chip
+change_chip(chip):
+    if chip is red make blue 
+    if chip is blue make red
+
+# Play the game until a winning sequence is found or the board is full
+def play_a_full_game(board, chip):
+    # Set the opponent's chip
+    opponent is change_chip(chip)
+    # it starts off by being opponents turn
+    this_turn = opponent    
+    # Loop until game is won or board is full
+    while True:
+        # Check if the current player has won
+        if game_is_won(board, chip):
+            return True
+        # Check if the opponent has won or the board is full
+        if game_is_won(board, change_chip(chip)) or len(get_valid_locations(board)) == 0:
+            return False
+        
+        # Make a random move for the other player
+        #if my turn 
+            moveRandom on board with my chip 
+            now opponents turn
+        #if opponents turn
+            moveRandom on board with opponents chip
+            now my turn.
